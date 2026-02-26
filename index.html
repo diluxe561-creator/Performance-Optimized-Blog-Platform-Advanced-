@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoBlog - Sustainable living insights, agriculture tips, and green technology articles. Optimized for performance and accessibility.">
+    <meta name="theme-color" content="#059669">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" as="style">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=600&fit=crop" fetchpriority="high">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    
+    <title>EcoBlog - Sustainable Future Insights</title>
+    
+    <!-- Critical CSS Inline -->
+    <style>
+        /* Critical Above-the-fold styles */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{font-family:Inter,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+        body{background-color:#f9fafb;color:#111827;line-height:1.6}
+        img{max-width:100%;height:auto;display:block}
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+        .skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:loading 1.5s infinite}
+        @keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
+        .content-visibility-auto{content-visibility:auto;contain-intrinsic-size:0 500px}
+    </style>
+    
+    <!-- Async CSS loading -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap"></noscript>
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <!-- Vue Router -->
+    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.prod.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiRWNvQmxvZyIsInNob3J0X25hbWUiOiJFY29CbG9nIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmOWZhZmIiLCJ0aGVtZV9jb2xvciI6IiMwNTk2NjkiLCJpY29ucyI6W3sic3JjIjoiL2ljb24tMTkyLnBuZyIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Ii9pY29uLTUxMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ==">
+    
+    <style>
+        /* Performance optimizations */
+        .font-sans{font-family:Inter,system-ui,sans-serif}
+        .font-serif{font-family:Merriweather,Georgia,serif}
+        
+        /* Content visibility for off-screen content */
+        .lazy-section{content-visibility:auto;contain-intrinsic-size:auto 500px}
+        
+        /* Image optimization */
+        .blur-up{filter:blur(20px);transition:filter 0.3s}
+        .blur-up.lazyloaded{filter:blur(0)}
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion:reduce){
+            *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+        }
+        
+        /* Print styles */
+        @media print{
+            .no-print{display:none!important}
+            body{background:white!important;color:black!important}
+        }
+        
+        /* Custom scrollbar */
+        @media (hover:hover){
+            ::-webkit-scrollbar{width:8px;height:8px}
+            ::-webkit-scrollbar-track{background:transparent}
+            ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
+            ::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+            .dark ::-webkit-scrollbar-thumb{background:#475569}
+        }
+        
+        /* Reading progress bar */
+        .reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#10b981,#059669);z-index:100;transition:width 0.1s}
+        
+        /* Image aspect ratio boxes */
+        .aspect-w-16{position:relative;padding-bottom:56.25%}
+        .aspect-w-16>*{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+        
+        /* Intersection Observer animations */
+        .io-hidden{opacity:0;transform:translateY(20px)}
+        .io-visible{opacity:1;transform:translateY(0);transition:opacity 0.6s,transform 0.6s}
+        
+        /* Code block styling */
+        pre{overflow-x:auto;background:#1e293b;color:#e2e8f0;padding:1rem;border-radius:0.5rem;font-size:0.875rem;line-height:1.7}
+        code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+        
+        /* Focus visible for accessibility */
+        :focus-visible{outline:2px solid #10b981;outline-offset:2px}
+        
+        /* Container queries support */
+        @supports (container-type:inline-size){
+            .card-container{container-type:inline-size}
+            @container (min-width:400px){.card-responsive{grid-template-columns:1fr 1fr}}
+        }
+    </style>
+</head>
+<body class="antialiased bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div id="app">
+        <!-- Reading Progress Bar -->
+        <div v-if="showReadingProgress" class="reading-progress" :style="{width:readingProgress+'%'}"></div>
+        
+        <!-- Skip to content for accessibility -->
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">
+            Skip to main content
+        </a>
+        
+        <!-- Navigation -->
+        <header class="sticky top-0 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-all duration-300" :class="{'shadow-sm':scrolled}">
+            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+                <div class="flex justify-between items-center h-16">
+                    <!-- Logo -->
+                    <router-link to="/" class="flex items-center gap-2 group" aria-label="EcoBlog Home">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
+                            <i class="fas fa-leaf text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">EcoBlog</span>
+                            <span class="hidden sm:block text-xs text-gray-500 dark:text-gray-400 -mt-1">Sustainable Insights</span>
+                        </div>
+                    </router-link>
+                    
+                    <!-- Desktop Nav -->
+                    <div class="hidden md:flex items-center gap-8">
+                        <router-link 
+                            v-for="item in navItems" 
+                            :key="item.path"
+                            :to="item.path"
+                            class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors relative group"
+                            :class="{'text-emerald-600 dark:text-emerald-400':$route.path===item.path}"
+                        >
+                            {{ item.name }}
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 group-hover:w-full transition-all duration-300" :class="{'w-full':$route.path===item.path}"></span>
+                        </router-link>
+                    </div>
+                    
+                    <!-- Actions -->
+                    <div class="flex items-center gap-3">
+                        <button 
+                            @click="toggleTheme"
+                            class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                            aria-label="Toggle dark mode"
+                        >
+                            <i class="fas fa-moon dark:hidden text-gray-600" aria-hidden="true"></i>
+                            <i class="fas fa-sun hidden dark:block text-yellow-400" aria-hidden="true"></i>
+                        </button>
+                        
+                        <button 
+                            @click="showSearch=true"
+                            class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm"
+                            aria-label="Search articles"
+                        >
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <span class="text-gray-400">Ctrl K</span>
+                        </button>
+                        
+                        <button 
+                            @click="mobileMenuOpen=!mobileMenuOpen"
+                            class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                            aria-label="Toggle menu"
+                            aria-expanded="mobileMenuOpen"
+                        >
+                            <i class="fas fa-bars text-gray-600 dark:text-gray-400" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Mobile Menu -->
+            <div 
+                v-show="mobileMenuOpen"
+                class="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900"
+                role="menu"
+            >
+                <div class="px-4 py-3 space-y-1">
+                    <router-link 
+                        v-for="item in navItems" 
+                        :key="item.path"
+                        :to="item.path"
+                        @click="mobileMenuOpen=false"
+                        class="block px-3 py-2 rounded-lg text-base font-medium transition-colors"
+                        :class="$route.path===item.path?'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400':'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'"
+                        role="menuitem"
+                    >
+                        {{ item.name }}
+                    </router-link>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main id="main-content" class="min-h-screen">
+            <router-view v-slot="{Component}">
+                <transition name="fade" mode="out-in">
+                    <keep-alive :max="5">
+                        <component :is="Component" />
+                    </keep-alive>
+                </transition>
+            </router-view>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="col-span-1 md:col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white">
+                                <i class="fas fa-leaf" aria-hidden="true"></i>
+                            </div>
+                            <span class="text-lg font-bold">EcoBlog</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4 max-w-sm">
+                            Exploring sustainable agriculture, green technology, and eco-friendly living for a better tomorrow.
+                        </p>
+                        <div class="flex gap-4">
+                            <a v-for="social in socials" :key="social.name" :href="social.url" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-emerald-500 hover:text-white transition-all" :aria-label="social.name">
+                                <i :class="social.icon" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-4">Categories</h4>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li v-for="cat in categories" :key="cat.slug">
+                                <router-link :to="`/category/${cat.slug}`" class="hover:text-emerald-600 transition-colors">{{ cat.name }}</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-4">Newsletter</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Get the latest articles delivered to your inbox.</p>
+                        <form @submit.prevent="subscribeNewsletter" class="flex gap-2">
+                            <input 
+                                v-model="email"
+                                type="email" 
+                                required
+                                placeholder="Enter your email"
+                                class="flex-1 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 border-none focus:ring-2 focus:ring-emerald-500 text-sm"
+                                aria-label="Email for newsletter"
+                            >
+                            <button type="submit" class="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors text-sm font-medium">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-200 dark:border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                    <p>&copy; {{ new Date().getFullYear() }} EcoBlog. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <router-link to="/privacy" class="hover:text-emerald-600 transition-colors">Privacy</router-link>
+                        <router-link to="/terms" class="hover:text-emerald-600 transition-colors">Terms</router-link>
+                        <router-link to="/sitemap" class="hover:text-emerald-600 transition-colors">Sitemap</router-link>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- Search Modal -->
+        <div 
+            v-if="showSearch"
+            class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-start justify-center pt-[20vh] px-4"
+            @click.self="showSearch=false"
+            role="dialog"
+            aria-label="Search"
+        >
+            <div class="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center gap-3">
+                    <i class="fas fa-search text-gray-400" aria-hidden="true"></i>
+                    <input 
+                        v-model="searchQuery"
+                        type="text" 
+                        placeholder="Search articles..."
+                        class="flex-1 bg-transparent border-none outline-none text-lg dark:text-white"
+                        autofocus
+                        aria-label="Search input"
+                    >
+                    <button @click="showSearch=false" class="text-gray-400 hover:text-gray-600" aria-label="Close search">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="max-h-[60vh] overflow-y-auto p-4">
+                    <div v-if="searchResults.length===0 && searchQuery" class="text-center py-8 text-gray-500">
+                        No results found for "{{ searchQuery }}"
+                    </div>
+                    <div v-else-if="!searchQuery" class="text-center py-8 text-gray-500">
+                        Start typing to search articles...
+                    </div>
+                    <div v-else class="space-y-3">
+                        <router-link 
+                            v-for="result in searchResults" 
+                            :key="result.id"
+                            :to="`/article/${result.slug}`"
+                            @click="showSearch=false"
+                            class="flex gap-4 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group"
+                        >
+                            <img 
+                                :src="result.image+'?w=100&h=100&fit=crop'" 
+                                :alt="result.title"
+                                class="w-16 h-16 rounded-lg object-cover"
+                                loading="lazy"
+                            >
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-900 dark:text-white group-hover:text-emerald-600 transition-colors">{{ result.title }}</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{{ result.excerpt }}</p>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Performance Metrics (Dev Only) -->
+        <div v-if="showMetrics" class="fixed bottom-4 right-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 max-w-sm">
+            <div class="flex items-center justify-between mb-3">
+                <h4 class="font-semibold text-sm">Performance Metrics</h4>
+                <button @click="showMetrics=false" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-gray-500">FCP:</span>
+                    <span :class="metrics.fcp<1800?'text-green-500':'text-red-500'">{{ metrics.fcp }}ms</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">LCP:</span>
+                    <span :class="metrics.lcp<2500?'text-green-500':'text-red-500'">{{ metrics.lcp }}ms</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">CLS:</span>
+                    <span :class="metrics.cls<0.1?'text-green-500':'text-red-500'">{{ metrics.cls }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">TTFB:</span>
+                    <span :class="metrics.ttfb<600?'text-green-500':'text-red-500'">{{ metrics.ttfb }}ms</span>
+                </div>
+                <div class="pt-2 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full" :class="performanceScore>=90?'bg-green-500':performanceScore>=70?'bg-yellow-500':'bg-red-500'"></div>
+                        <span class="font-semibold">Score: {{ performanceScore }}/100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Install Prompt -->
+        <div v-if="showInstallPrompt" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500 flex items-center justify-center text-white flex-shrink-0">
+                <i class="fas fa-leaf text-xl"></i>
+            </div>
+            <div class="flex-1">
+                <h4 class="font-semibold">Install EcoBlog</h4>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Add to your home screen for offline reading</p>
+            </div>
+            <button @click="installPWA" class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors">
+                Install
+            </button>
+            <button @click="showInstallPrompt=false" class="text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, computed, onMounted, onUnmounted, nextTick, watch } = Vue;
+        const { createRouter, createWebHashHistory } = VueRouter;
+        
+        // Performance monitoring
+        const perfMetrics = {
+            fcp: 0,
+            lcp: 0,
+            cls: 0,
+            ttfb: 0
+        };
+        
+        // Lazy load component helper
+        const lazyLoad = (componentName) => {
+            return () => new Promise((resolve) => {
+                // Simulate code splitting delay
+                setTimeout(() => resolve({ template: `<div>${componentName}</div>` }), 100);
+            });
+        };
+        
+        // Home Component
+        const Home = {
+            template: `
+                <div>
+                    <!-- Hero Section -->
+                    <section class="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0">
+                            <img 
+                                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&h=1080&fit=crop&q=80" 
+                                alt="Green field"
+                                class="w-full h-full object-cover"
+                                fetchpriority="high"
+                                decoding="async"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        </div>
+                        <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+                            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
+                                Sustainable Future<br>
+                                <span class="text-emerald-400">Insights</span>
+                            </h1>
+                            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                                Discover the latest in sustainable agriculture, green technology, and eco-friendly living.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <router-link to="/articles" class="px-8 py-4 bg-emerald-600 text-white rounded-full font-semibold hover:bg-emerald-700 transition-all hover:scale-105 shadow-lg">
+                                    Explore Articles
+                                </router-link>
+                                <button @click="scrollToFeatured" class="px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-full font-semibold hover:bg-white/20 transition-all border border-white/30">
+                                    Featured Stories
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Featured Section -->
+                    <section ref="featuredSection" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex items-center justify-between mb-12">
+                            <div>
+                                <h2 class="text-3xl font-bold mb-2">Trending Articles</h2>
+                                <p class="text-gray-600 dark:text-gray-400">Most read stories this week</p>
+                            </div>
+                            <router-link to="/articles" class="hidden sm:flex items-center gap-2 text-emerald-600 font-medium hover:gap-3 transition-all">
+                                View All <i class="fas fa-arrow-right"></i>
+                            </router-link>
+                        </div>
+                        
+                        <!-- Featured Grid -->
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <article 
+                                v-for="(article,index) in featuredArticles" 
+                                :key="article.id"
+                                class="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                                :class="{'lg:col-span-2 lg:row-span-2':index===0}"
+                                v-intersection-observer="{delay:index*100}"
+                            >
+                                <div class="relative overflow-hidden" :class="index===0?'aspect-w-16':'aspect-w-16 aspect-h-9'">
+                                    <img 
+                                        :src="article.image+'?w='+ (index===0?'800':'600') +'&h='+ (index===0?'600':'400') +'&fit=crop'"
+                                        :alt="article.title"
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        loading="lazy"
+                                        decoding="async"
+                                    >
+                                    <div class="absolute top-4 left-4">
+                                        <span class="px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full">
+                                            {{ article.category }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                        <span class="flex items-center gap-1">
+                                            <i class="far fa-calendar" aria-hidden="true"></i>
+                                            {{ article.date }}
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <i class="far fa-clock" aria-hidden="true"></i>
+                                            {{ article.readTime }} min read
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 group-hover:text-emerald-600 transition-colors" :class="{'text-2xl':index===0}">
+                                        <router-link :to="'/article/'+article.slug">{{ article.title }}</router-link>
+                                    </h3>
+                                    <p class="text-gray-600 dark:text-gray-400 line-clamp-3 mb-4" :class="{'line-clamp-none':index===0}">
+                                        {{ article.excerpt }}
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <img :src="article.author.avatar" :alt="article.author.name" class="w-8 h-8 rounded-full" loading="lazy">
+                                            <span class="text-sm font-medium">{{ article.author.name }}</span>
+                                        </div>
+                                        <button @click="toggleBookmark(article)" class="text-gray-400 hover:text-emerald-500 transition-colors" :class="{'text-emerald-500':article.bookmarked}">
+                                            <i :class="article.bookmarked?'fas':'far'" class="fa-bookmark"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                    
+                    <!-- Categories -->
+                    <section class="py-20 bg-emerald-50 dark:bg-emerald-900/10">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 class="text-3xl font-bold text-center mb-12">Explore Topics</h2>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <router-link 
+                                    v-for="category in categories" 
+                                    :key="category.slug"
+                                    :to="'/category/'+category.slug"
+                                    class="group bg-white dark:bg-gray-800 p-6 rounded-2xl text-center hover:shadow-lg transition-all hover:-translate-y-1"
+                                    v-intersection-observer
+                                >
+                                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+                                        {{ category.icon }}
+                                    </div>
+                                    <h3 class="font-semibold mb-1">{{ category.name }}</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ category.count }} articles</p>
+                                </router-link>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Latest Articles (Lazy Loaded) -->
+                    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lazy-section">
+                        <h2 class="text-3xl font-bold mb-12">Latest Stories</h2>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <article 
+                                v-for="article in latestArticles" 
+                                :key="article.id"
+                                class="flex gap-6 group cursor-pointer"
+                                @click="$router.push('/article/'+article.slug)"
+                                v-intersection-observer
+                            >
+                                <div class="w-48 h-32 flex-shrink-0 rounded-xl overflow-hidden">
+                                    <img 
+                                        :src="article.image+'?w=400&h=300&fit=crop'"
+                                        :alt="article.title"
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                    >
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-emerald-600 text-sm font-medium">{{ article.category }}</span>
+                                    <h3 class="font-bold text-lg mb-2 group-hover:text-emerald-600 transition-colors line-clamp-2">{{ article.title }}</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-3">{{ article.excerpt }}</p>
+                                    <div class="flex items-center gap-3 text-sm text-gray-500">
+                                        <img :src="article.author.avatar" class="w-6 h-6 rounded-full" loading="lazy">
+                                        <span>{{ article.author.name }}</span>
+                                        <span>•</span>
+                                        <span>{{ article.readTime }} min</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        
+                        <!-- Infinite Scroll Trigger -->
+                        <div ref="loadMoreTrigger" class="mt-12 text-center">
+                            <div v-if="loadingMore" class="inline-flex items-center gap-2 text-gray-500">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Loading more articles...
+                            </div>
+                            <button v-else-if="hasMore" @click="loadMore" class="px-6 py-3 border-2 border-emerald-600 text-emerald-600 rounded-full font-medium hover:bg-emerald-600 hover:text-white transition-all">
+                                Load More Articles
+                            </button>
+                        </div>
+                    </section>
+                    
+                    <!-- Newsletter -->
+                    <section class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
+                            <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+                            <p class="text-emerald-100 mb-8 max-w-xl mx-auto">Join 10,000+ readers receiving weekly insights on sustainable living and green technology.</p>
+                            <form @submit.prevent="subscribe" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                                <input 
+                                    v-model="email"
+                                    type="email" 
+                                    required
+                                    placeholder="Enter your email"
+                                    class="flex-1 px-6 py-4 rounded-full bg-white/10 border border-white/30 text-white placeholder-emerald-200 focus:outline-none focus:ring-2 focus:ring-white"
+                                >
+                                <button type="submit" class="px-8 py-4 bg-white text-emerald-600 rounded-full font-semibold hover:bg-emerald-50 transition-colors shadow-lg">
+                                    Subscribe
+                                </button>
+                            </form>
+                            <p class="text-sm text-emerald-200 mt-4">No spam, unsubscribe anytime.</p>
+                        </div>
+                    </section>
+                </div>
+            `,
+            setup() {
+                const featuredSection = ref(null);
+                const loadMoreTrigger = ref(null);
+                const loadingMore = ref(false);
+                const hasMore = ref(true);
+                const email = ref('');
+                
+                const featuredArticles = ref([
+                    {
+                        id: 1,
+                        title: 'The Future of Regenerative Agriculture: A Complete Guide',
+                        excerpt: 'Discover how regenerative farming practices are revolutionizing food production while healing our planet. From soil health to carbon sequestration, learn why this approach is gaining momentum worldwide.',
+                        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449',
+                        category: 'Agriculture',
+                        date: 'Jan 15, 2024',
+                        readTime: 12,
+                        slug: 'future-regenerative-agriculture',
+                        author: { name: 'Sarah Green', avatar: 'https://i.pravatar.cc/150?img=5' },
+                        bookmarked: false
+                    },
+                    {
+                        id: 2,
+                        title: 'Solar Technology Breakthroughs in 2024',
+                        excerpt: 'New perovskite solar cells promise 40% efficiency rates. Here is what that means for homeowners.',
+                        image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276',
+                        category: 'Technology',
+                        date: 'Jan 14, 2024',
+                        readTime: 8,
+                        slug: 'solar-technology-2024',
+                        author: { name: 'Mike Chen', avatar: 'https://i.pravatar.cc/150?img=3' },
+                        bookmarked: false
+                    },
+                    {
+                        id: 3,
+                        title: 'Urban Gardening for Small Spaces',
+                        excerpt: 'Transform your balcony or windowsill into a thriving green oasis with these expert tips.',
+                        image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b',
+                        category: 'Lifestyle',
+                        date: 'Jan 13, 2024',
+                        readTime: 6,
+                        slug: 'urban-gardening-small-spaces',
+                        author: { name: 'Emma Wilson', avatar: 'https://i.pravatar.cc/150?img=9' },
+                        bookmarked: false
+                    }
+                ]);
+                
+                const latestArticles = ref([
+                    {
+                        id: 4,
+                        title: 'Water Conservation Techniques for Modern Farms',
+                        excerpt: 'Innovative irrigation systems saving millions of gallons annually.',
+                        image: 'https://images.unsplash.com/photo-1563514227147-6d2ff665a6a0',
+                        category: 'Agriculture',
+                        readTime: 5,
+                        slug: 'water-conservation-farming',
+                        author: { name: 'John Doe', avatar: 'https://i.pravatar.cc/150?img=8' }
+                    },
+                    {
+                        id: 5,
+                        title: 'Electric Vehicle Charging Infrastructure',
+                        excerpt: 'The rapid expansion of EV charging networks across rural America.',
+                        image: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7',
+                        category: 'Technology',
+                        readTime: 7,
+                        slug: 'ev-charging-infrastructure',
+                        author: { name: 'Lisa Park', avatar: 'https://i.pravatar.cc/150?img=15' }
+                    },
+                    {
+                        id: 6,
+                        title: 'Zero Waste Kitchen Essentials',
+                        excerpt: 'Simple swaps for a more sustainable cooking experience.',
+                        image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d',
+                        category: 'Lifestyle',
+                        readTime: 4,
+                        slug: 'zero-waste-kitchen',
+                        author: { name: 'Tom Brown', avatar: 'https://i.pravatar.cc/150?img=12' }
+                    },
+                    {
+                        id: 7,
+                        title: 'Vertical Farming: The Sky High Solution',
+                        excerpt: 'How vertical farms are changing urban food production.',
+                        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8',
+                        category: 'Innovation',
+                        readTime: 9,
+                        slug: 'vertical-farming-solution',
+                        author: { name: 'Anna Lee', avatar: 'https://i.pravatar.cc/150?img=20' }
+                    }
+                ]);
+                
+                const scrollToFeatured = () => {
+                    featuredSection.value?.scrollIntoView({ behavior: 'smooth' });
+                };
+                
+                const toggleBookmark = (article) => {
+                    article.bookmarked = !article.bookmarked;
+                    // Persist to localStorage
+                    const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+                    if (article.bookmarked) {
+                        bookmarks.push(article.id);
+                    } else {
+                        const index = bookmarks.indexOf(article.id);
+                        if (index > -1) bookmarks.splice(index, 1);
+                    }
+                    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+                };
+                
+                const subscribe = () => {
+                    alert(`Thanks for subscribing with ${email.value}!`);
+                    email.value = '';
+                };
+                
+                const loadMore = () => {
+                    loadingMore.value = true;
+                    // Simulate API call
+                    setTimeout(() => {
+                        const newArticles = Array.from({length: 4}, (_, i) => ({
+                            id: Date.now() + i,
+                            title: `Article ${latestArticles.value.length + i + 1}`,
+                            excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                            image: `https://images.unsplash.com/photo-${1500000000000 + i}?w=400&h=300&fit=crop`,
+                            category: 'General',
+                            readTime: 5,
+                            slug: `article-${Date.now()}-${i}`,
+                            author: { name: 'Author Name', avatar: 'https://i.pravatar.cc/150' }
+                        }));
+                        latestArticles.value.push(...newArticles);
+                        loadingMore.value = false;
+                        if (latestArticles.value.length > 20) hasMore.value = false;
+                    }, 1000);
+                };
+                
+                // Intersection Observer for infinite scroll
+                onMounted(() => {
+                    const observer = new IntersectionObserver((entries) => {
+                        if (entries[0].isIntersecting && hasMore.value && !loadingMore.value) {
+                            loadMore();
+                        }
+                    }, { rootMargin: '100px' });
+                    
+                    if (loadMoreTrigger.value) {
+                        observer.observe(loadMoreTrigger.value);
+                    }
+                    
+                    return () => observer.disconnect();
+                });
+                
+                return {
+                    featuredSection,
+                    loadMoreTrigger,
+                    featuredArticles,
+                    latestArticles,
+                    loadingMore,
+                    hasMore,
+                    email,
+                    scrollToFeatured,
+                    toggleBookmark,
+                    subscribe,
+                    loadMore
+                };
+            }
+        };
+        
+        // Article Detail Component
+        const ArticleDetail = {
+            template: `
+                <article class="min-h-screen">
+                    <!-- Hero -->
+                    <div class="relative h-[50vh] min-h-[400px]">
+                        <img 
+                            :src="article.image+'?w=1920&h=1080&fit=crop'"
+                            :alt="article.title"
+                            class="w-full h-full object-cover"
+                            fetchpriority="high"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 max-w-4xl mx-auto text-white">
+                            <div class="flex items-center gap-4 mb-4 text-sm">
+                                <span class="px-3 py-1 bg-emerald-500 rounded-full font-medium">{{ article.category }}</span>
+                                <span>{{ article.date }}</span>
+                                <span>{{ article.readTime }} min read</span>
+                            </div>
+                            <h1 class="text-3xl md:text-5xl font-bold mb-4 leading-tight">{{ article.title }}</h1>
+                            <div class="flex items-center gap-3">
+                                <img :src="article.author.avatar" :alt="article.author.name" class="w-12 h-12 rounded-full border-2 border-white">
+                                <div>
+                                    <p class="font-semibold">{{ article.author.name }}</p>
+                                    <p class="text-sm text-gray-300">{{ article.author.bio }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                        <!-- Share -->
+                        <div class="flex items-center justify-between mb-8 pb-8 border-b border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center gap-4">
+                                <button 
+                                    v-for="platform in sharePlatforms" 
+                                    :key="platform.name"
+                                    @click="share(platform)"
+                                    class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-emerald-500 hover:text-white transition-all"
+                                    :aria-label="platform.name"
+                                >
+                                    <i :class="platform.icon"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-500">
+                                <button @click="adjustFontSize(-1)" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded" aria-label="Decrease font size">A-</button>
+                                <button @click="adjustFontSize(1)" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded" aria-label="Increase font size">A+</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Article Body -->
+                        <div 
+                            class="prose prose-lg dark:prose-invert max-w-none font-serif"
+                            :style="{fontSize: fontSize + 'rem'}"
+                            v-html="article.content"
+                        ></div>
+                        
+                        <!-- Tags -->
+                        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex flex-wrap gap-2">
+                                <span 
+                                    v-for="tag in article.tags" 
+                                    :key="tag"
+                                    class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-gray-600 dark:text-gray-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:text-emerald-700 dark:hover:text-emerald-400 cursor-pointer transition-colors"
+                                >
+                                    #{{ tag }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Author Box -->
+                        <div class="mt-12 p-8 bg-gray-50 dark:bg-gray-800 rounded-2xl">
+                            <div class="flex items-start gap-4">
+                                <img :src="article.author.avatar" :alt="article.author.name" class="w-16 h-16 rounded-full">
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-lg mb-2">Written by {{ article.author.name }}</h3>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-4">{{ article.author.bio }}</p>
+                                    <button class="px-4 py-2 border-2 border-emerald-600 text-emerald-600 rounded-full font-medium hover:bg-emerald-600 hover:text-white transition-all">
+                                        Follow Author
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Related Articles -->
+                        <div class="mt-12">
+                            <h3 class="text-2xl font-bold mb-6">Related Articles</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <article 
+                                    v-for="related in relatedArticles" 
+                                    :key="related.id"
+                                    class="group cursor-pointer"
+                                    @click="$router.push('/article/'+related.slug)"
+                                >
+                                    <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-4">
+                                        <img 
+                                            :src="related.image+'?w=600&h=400&fit=crop'"
+                                            :alt="related.title"
+                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            loading="lazy"
+                                        >
+                                    </div>
+                                    <h4 class="font-bold group-hover:text-emerald-600 transition-colors">{{ related.title }}</h4>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `,
+            setup() {
+                const fontSize = ref(1.125);
+                const article = ref({
+                    title: 'The Future of Regenerative Agriculture: A Complete Guide',
+                    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449',
+                    category: 'Agriculture',
+                    date: 'January 15, 2024',
+                    readTime: 12,
+                    author: {
+                        name: 'Sarah Green',
+                        avatar: 'https://i.pravatar.cc/150?img=5',
+                        bio: 'Environmental journalist and sustainable farming advocate with 10+ years of experience.'
+                    },
+                    tags: ['regenerative', 'agriculture', 'sustainability', 'farming', 'climate'],
+                    content: `
+                        <p class="lead">Regenerative agriculture represents a paradigm shift in how we approach farming—one that prioritizes soil health, biodiversity, and carbon sequestration over pure yield metrics.</p>
+                        
+                        <h2>What is Regenerative Agriculture?</h2>
+                        <p>At its core, regenerative agriculture is a system of farming principles and practices that seeks to rehabilitate and enhance the entire ecosystem of the farm. Rather than simply sustaining current conditions, it aims to improve them.</p>
+                        
+                        <blockquote>"The nation that destroys its soil destroys itself." — Franklin D. Roosevelt</blockquote>
+                        
+                        <h2>The Five Principles</h2>
+                        <ol>
+                            <li><strong>Minimize Soil Disturbance:</strong> No-till or reduced-till farming preserves soil structure and microbial life.</li>
+                            <li><strong>Maximize Crop Diversity:</strong> Polycultures and cover crops improve resilience and nutrient cycling.</li>
+                            <li><strong>Keep the Soil Covered:</strong> Mulching and cover crops protect against erosion and temperature extremes.</li>
+                            <li><strong>Maintain Living Roots:</strong> Year-round root systems feed soil biology and prevent carbon loss.</li>
+                            <li><strong>Integrate Livestock:</strong> Managed grazing mimics natural patterns and accelerates soil building.</li>
+                        </ol>
+                        
+                        <h2>Carbon Sequestration Potential</h2>
+                        <p>Recent studies suggest that widespread adoption of regenerative practices could sequester 23.2 gigatons of CO2 by 2050—equivalent to removing 492 million cars from the road annually.</p>
+                        
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&h=600&fit=crop" alt="Healthy soil" loading="lazy">
+                            <figcaption>Rich, dark soil indicates high organic matter content—key to carbon sequestration.</figcaption>
+                        </figure>
+                        
+                        <h2>Economic Viability</h2>
+                        <p>Contrary to popular belief, regenerative farms often outperform conventional operations in profitability. Reduced input costs, premium pricing, and improved resilience to weather extremes contribute to stronger bottom lines.</p>
+                        
+                        <h2>Getting Started</h2>
+                        <p>Transitioning to regenerative practices doesn't happen overnight. Start with cover crops, reduce tillage, and gradually integrate livestock. Monitor soil health metrics and be patient—building soil takes time, but the returns last generations.</p>
+                    `
+                });
+                
+                const relatedArticles = ref([
+                    {
+                        id: 8,
+                        title: 'Soil Health: The Foundation of Sustainable Farming',
+                        image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399',
+                        slug: 'soil-health-foundation'
+                    },
+                    {
+                        id: 9,
+                        title: 'Cover Crops: Nature\'s Fertilizer',
+                        image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854',
+                        slug: 'cover-crops-guide'
+                    }
+                ]);
+                
+                const sharePlatforms = [
+                    { name: 'Twitter', icon: 'fab fa-twitter' },
+                    { name: 'Facebook', icon: 'fab fa-facebook-f' },
+                    { name: 'LinkedIn', icon: 'fab fa-linkedin-in' },
+                    { name: 'Copy Link', icon: 'fas fa-link' }
+                ];
+                
+                const adjustFontSize = (delta) => {
+                    fontSize.value = Math.max(0.875, Math.min(1.5, fontSize.value + delta * 0.125));
+                };
+                
+                const share = (platform) => {
+                    if (platform.name === 'Copy Link') {
+                        navigator.clipboard.writeText(window.location.href);
+                        alert('Link copied to clipboard!');
+                    } else {
+                        alert(`Sharing to ${platform.name}`);
+                    }
+                };
+                
+                return {
+                    article,
+                    relatedArticles,
+                    sharePlatforms,
+                    fontSize,
+                    adjustFontSize,
+                    share
+                };
+            }
+        };
+        
+        // Articles List Component
+        const ArticlesList = {
+            template: `
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <!-- Sidebar Filters -->
+                        <aside class="w-full md:w-64 flex-shrink-0">
+                            <div class="sticky top-24">
+                                <h2 class="text-xl font-bold mb-6">Filters</h2>
+                                
+                                <div class="space-y-6">
+                                    <div>
+                                        <h3 class="font-semibold mb-3 text-sm uppercase tracking-wider text-gray-500">Categories</h3>
+                                        <div class="space-y-2">
+                                            <label v-for="cat in categories" :key="cat.slug" class="flex items-center gap-3 cursor-pointer group">
+                                                <input 
+                                                    type="checkbox" 
+                                                    :value="cat.slug"
+                                                    v-model="selectedCategories"
+                                                    class="w-4 h-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500"
+                                                >
+                                                <span class="group-hover:text-emerald-600 transition-colors">{{ cat.name }}</span>
+                                                <span class="ml-auto text-sm text-gray-400">{{ cat.count }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="font-semibold mb-3 text-sm uppercase tracking-wider text-gray-500">Sort By</h3>
+                                        <select v-model="sortBy" class="w-full p-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+                                            <option value="newest">Newest First</option>
+                                            <option value="oldest">Oldest First</option>
+                                            <option value="popular">Most Popular</option>
+                                            <option value="readTime">Reading Time</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                        
+                        <!-- Articles Grid -->
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-6">
+                                <h1 class="text-3xl font-bold">All Articles</h1>
+                                <span class="text-gray-500">{{ filteredArticles.length }} articles</span>
+                            </div>
+                            
+                            <div class="grid gap-6">
+                                <article 
+                                    v-for="article in paginatedArticles" 
+                                    :key="article.id"
+                                    class="flex flex-col md:flex-row gap-6 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group cursor-pointer"
+                                    @click="$router.push('/article/'+article.slug)"
+                                    v-intersection-observer
+                                >
+                                    <div class="md:w-72 h-48 md:h-auto flex-shrink-0 overflow-hidden">
+                                        <img 
+                                            :src="article.image+'?w=400&h=300&fit=crop'"
+                                            :alt="article.title"
+                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            loading="lazy"
+                                        >
+                                    </div>
+                                    <div class="flex-1 p-6 md:pl-0">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-semibold rounded-full">
+                                                {{ article.category }}
+                                            </span>
+                                            <span class="text-sm text-gray-500">{{ article.date }}</span>
+                                        </div>
+                                        <h2 class="text-xl font-bold mb-3 group-hover:text-emerald-600 transition-colors">{{ article.title }}</h2>
+                                        <p class="text-gray-600 dark:text-gray-400 line-clamp-2 mb-4">{{ article.excerpt }}</p>
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex items-center gap-2">
+                                                <img :src="article.author.avatar" class="w-8 h-8 rounded-full" loading="lazy">
+                                                <span class="text-sm font-medium">{{ article.author.name }}</span>
+                                            </div>
+                                            <span class="text-sm text-gray-500">{{ article.readTime }} min read</span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <div v-if="totalPages > 1" class="mt-12 flex justify-center gap-2">
+                                <button 
+                                    @click="currentPage--"
+                                    :disabled="currentPage === 1"
+                                    class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                >
+                                    Previous
+                                </button>
+                                <button 
+                                    v-for="page in displayedPages" 
+                                    :key="page"
+                                    @click="currentPage = page"
+                                    class="px-4 py-2 rounded-lg transition-colors"
+                                    :class="currentPage === page ? 'bg-emerald-600 text-white' : 'border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800'"
+                                >
+                                    {{ page }}
+                                </button>
+                                <button 
+                                    @click="currentPage++"
+                                    :disabled="currentPage === totalPages"
+                                    class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                >
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            setup() {
+                const selectedCategories = ref([]);
+                const sortBy = ref('newest');
+                const currentPage = ref(1);
+                const perPage = 6;
+                
+                const articles = ref(Array.from({length: 24}, (_, i) => ({
+                    id: i + 1,
+                    title: `Sustainable Living Article ${i + 1}`,
+                    excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    image: `https://images.unsplash.com/photo-${1500000000000 + i}?w=400&h=300&fit=crop`,
+                    category: ['Agriculture', 'Technology', 'Lifestyle', 'Innovation'][i % 4],
+                    date: new Date(Date.now() - i * 86400000).toLocaleDateString(),
+                    readTime: Math.floor(Math.random() * 10) + 3,
+                    slug: `article-${i + 1}`,
+                    author: { name: 'Author ' + (i % 5 + 1), avatar: `https://i.pravatar.cc/150?img=${i % 10 + 1}` }
+                })));
+                
+                const filteredArticles = computed(() => {
+                    let result = articles.value;
+                    if (selectedCategories.value.length) {
+                        result = result.filter(a => selectedCategories.value.includes(a.category.toLowerCase()));
+                    }
+                    
+                    switch(sortBy.value) {
+                        case 'oldest':
+                            result = [...result].reverse();
+                            break;
+                        case 'popular':
+                            result = [...result].sort(() => Math.random() - 0.5);
+                            break;
+                        case 'readTime':
+                            result = [...result].sort((a, b) => a.readTime - b.readTime);
+                            break;
+                    }
+                    return result;
+                });
+                
+                const totalPages = computed(() => Math.ceil(filteredArticles.value.length / perPage));
+                
+                const paginatedArticles = computed(() => {
+                    const start = (currentPage.value - 1) * perPage;
+                    return filteredArticles.value.slice(start, start + perPage);
+                });
+                
+                const displayedPages = computed(() => {
+                    const pages = [];
+                    for (let i = Math.max(1, currentPage.value - 2); i <= Math.min(totalPages.value, currentPage.value + 2); i++) {
+                        pages.push(i);
+                    }
+                    return pages;
+                });
+                
+                watch([selectedCategories, sortBy], () => {
+                    currentPage.value = 1;
+                });
+                
+                return {
+                    selectedCategories,
+                    sortBy,
+                    currentPage,
+                    filteredArticles,
+                    paginatedArticles,
+                    totalPages,
+                    displayedPages
+                };
+            }
+        };
+        
+        // Vue App Setup
+        const app = createApp({
+            setup() {
+                const showSearch = ref(false);
+                const searchQuery = ref('');
+                const mobileMenuOpen = ref(false);
+                const showMetrics = ref(false);
+                const showInstallPrompt = ref(false);
+                const scrolled = ref(false);
+                const readingProgress = ref(0);
+                const showReadingProgress = ref(false);
+                const email = ref('');
+                const deferredPrompt = ref(null);
+                
+                const navItems = [
+                    { name: 'Home', path: '/' },
+                    { name: 'Articles', path: '/articles' },
+                    { name: 'Categories', path: '/categories' },
+                    { name: 'About', path: '/about' }
+                ];
+                
+                const categories = ref([
+                    { name: 'Agriculture', slug: 'agriculture', count: 24, icon: '🌾' },
+                    { name: 'Technology', slug: 'technology', count: 18, icon: '⚡' },
+                    { name: 'Lifestyle', slug: 'lifestyle', count: 32, icon: '🌱' },
+                    { name: 'Innovation', slug: 'innovation', count: 15, icon: '💡' }
+                ]);
+                
+                const socials = [
+                    { name: 'Twitter', icon: 'fab fa-twitter', url: '#' },
+                    { name: 'Facebook', icon: 'fab fa-facebook-f', url: '#' },
+                    { name: 'Instagram', icon: 'fab fa-instagram', url: '#' },
+                    { name: 'LinkedIn', icon: 'fab fa-linkedin-in', url: '#' }
+                ];
+                
+                const searchResults = computed(() => {
+                    if (!searchQuery.value) return [];
+                    const query = searchQuery.value.toLowerCase();
+                    // Mock search results
+                    return Array.from({length: 5}, (_, i) => ({
+                        id: i,
+                        title: `Search Result ${i + 1} for "${searchQuery.value}"`,
+                        excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                        image: `https://images.unsplash.com/photo-${1500000000000 + i}?w=100&h=100&fit=crop`,
+                        slug: `search-result-${i + 1}`
+                    })).filter(r => r.title.toLowerCase().includes(query));
+                });
+                
+                const metrics = ref(perfMetrics);
+                const performanceScore = computed(() => {
+                    let score = 100;
+                    if (metrics.value.fcp > 1800) score -= 20;
+                    if (metrics.value.lcp > 2500) score -= 20;
+                    if (metrics.value.cls > 0.1) score -= 20;
+                    if (metrics.value.ttfb > 600) score -= 20;
+                    return Math.max(0, score);
+                });
+                
+                const toggleTheme = () => {
+                    document.documentElement.classList.toggle('dark');
+                    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+                };
+                
+                const subscribeNewsletter = () => {
+                    alert(`Subscribed with ${email.value}!`);
+                    email.value = '';
+                };
+                
+                const installPWA = async () => {
+                    if (!deferredPrompt.value) return;
+                    deferredPrompt.value.prompt();
+                    const { outcome } = await deferredPrompt.value.userChoice;
+                    if (outcome === 'accepted') {
+                        showInstallPrompt.value = false;
+                    }
+                    deferredPrompt.value = null;
+                };
+                
+                // Performance monitoring
+                onMounted(() => {
+                    // Web Vitals monitoring
+                    if ('web-vitals' in window) {
+                        // Would use web-vitals library in production
+                    }
+                    
+                    // Native performance API
+                    window.addEventListener('load', () => {
+                        setTimeout(() => {
+                            const perfData = performance.getEntriesByType('navigation')[0];
+                            if (perfData) {
+                                metrics.value.ttfb = Math.round(perfData.responseStart);
+                                metrics.value.fcp = Math.round(performance.getEntriesByName('first-contentful-paint')[0]?.startTime || 0);
+                            }
+                        }, 0);
+                    });
+                    
+                    // Scroll handling
+                    const handleScroll = () => {
+                        scrolled.value = window.scrollY > 50;
+                        
+                        // Reading progress
+                        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                        readingProgress.value = (winScroll / height) * 100;
+                        showReadingProgress.value = winScroll > 300;
+                    };
+                    
+                    window.addEventListener('scroll', handleScroll, { passive: true });
+                    
+                    // Keyboard shortcuts
+                    const handleKeydown = (e) => {
+                        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                            e.preventDefault();
+                            showSearch.value = true;
+                        }
+                        if (e.key === 'Escape') {
+                            showSearch.value = false;
+                        }
+                    };
+                    
+                    document.addEventListener('keydown', handleKeydown);
+                    
+                    // PWA install prompt
+                    window.addEventListener('beforeinstallprompt', (e) => {
+                        e.preventDefault();
+                        deferredPrompt.value = e;
+                        setTimeout(() => {
+                            showInstallPrompt.value = true;
+                        }, 5000);
+                    });
+                    
+                    // Service Worker
+                    if ('serviceWorker' in navigator) {
+                        navigator.serviceWorker.register('data:text/javascript;base64,' + btoa(`
+                            const CACHE_NAME = 'ecoblog-v1';
+                            const urlsToCache = ['/'];
+                            self.addEventListener('install', e => {
+                                e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)));
+                            });
+                            self.addEventListener('fetch', e => {
+                                e.respondWith(caches.match(e.request).then(response => response || fetch(e.request)));
+                            });
+                        `)).catch(() => {});
+                    }
+                    
+                    // Show metrics on Shift + M
+                    document.addEventListener('keydown', (e) => {
+                        if (e.shiftKey && e.key === 'M') {
+                            showMetrics.value = !showMetrics.value;
+                        }
+                    });
+                    
+                    return () => {
+                        window.removeEventListener('scroll', handleScroll);
+                        document.removeEventListener('keydown', handleKeydown);
+                    };
+                });
+                
+                return {
+                    showSearch,
+                    searchQuery,
+                    mobileMenuOpen,
+                    showMetrics,
+                    showInstallPrompt,
+                    scrolled,
+                    readingProgress,
+                    showReadingProgress,
+                    email,
+                    navItems,
+                    categories,
+                    socials,
+                    searchResults,
+                    metrics,
+                    performanceScore,
+                    toggleTheme,
+                    subscribeNewsletter,
+                    installPWA
+                };
+            }
+        });
+        
+        // Router
+        const router = createRouter({
+            history: createWebHashHistory(),
+            routes: [
+                { path: '/', component: Home, meta: { title: 'EcoBlog - Sustainable Future Insights' } },
+                { path: '/articles', component: ArticlesList, meta: { title: 'All Articles - EcoBlog' } },
+                { path: '/article/:slug', component: ArticleDetail, meta: { title: 'Article - EcoBlog' } },
+                { path: '/category/:slug', component: ArticlesList, meta: { title: 'Category - EcoBlog' } }
+            ],
+            scrollBehavior(to, from, savedPosition) {
+                if (savedPosition) {
+                    return savedPosition;
+                } else {
+                    return { top: 0, behavior: 'smooth' };
+                }
+            }
+        });
+        
+        router.beforeEach((to, from, next) => {
+            document.title = to.meta.title || 'EcoBlog';
+            next();
+        });
+        
+        // Global directive for intersection observer
+        app.directive('intersection-observer', {
+            mounted(el, binding) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                el.classList.add('io-visible');
+                                el.classList.remove('io-hidden');
+                            }, binding.value?.delay || 0);
+                            observer.unobserve(el);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '50px' });
+                
+                el.classList.add('io-hidden');
+                observer.observe(el);
+            }
+        });
+        
+        app.use(router);
+        app.mount('#app');
+    </script>
+    
+    <!-- Deferred non-critical CSS -->
+    <link rel="stylesheet" href="data:text/css;base64,LmFuaW1hdGUtZmFkZS1pbnthbmltYXRpb246ZmFkZUluIC4zcyBlYXNlfUBrZXlmcmFtZXMgZmFkZUlue2Zyb217b3BhY2l0eTowO3RyYW5zZm9ybTp0cmFuc2xhdGVZKDIwcHgpfXRve29wYWNpdHk6MTt0cmFuc2Zvcm06dHJhbnNsYXRlWSgwKX19" media="print" onload="this.media='all'">
+</body>
+</html>
